@@ -9,6 +9,7 @@ export default async function handler(
   const { method } = req;
   switch (method) {
     case 'POST':
+      // eslint-disable-next-line no-case-declarations
       const authRes = await surfClient.authenticate(req, res, {
         authSig: req.body.authSig,
       });
