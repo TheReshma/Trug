@@ -5,4 +5,30 @@ Since the inception of Web3, we have achieved numerous milestones. One of these 
 
 ## And there comes Trug !
 
-A decentralized file storage platform which functions quite similar to Google Drive with static URLs and enchanced Web3 features. On Trug, you can set up access controls which as facilitated by contracts deployed on the Wallaby Testnet powered by Filecoin. You can enable Sybil protection on a number of public files using Polygon ID. 
+A decentralized file storage platform which functions quite similar to Google Drive with static URLs and enhanced Web3 features. On Trug, you can set up access controls which as facilitated by contracts deployed on the Wallaby Testnet powered by Filecoin. You can enable Sybil protection on a number of public files using Polygon ID.
+
+## Features
+
+- Easy Sign In using Rainbow Wallet, no questions asked.
+- Can change the contents of the file without worrying about the URL which is going to stay the same.
+- Transparent and decentralized storage of personal information.
+- If you are a DAO lead, you can token gate / role gate your files using Guild.xyz
+- Build your file marketplace where you can sell your files by setting a price on it either in dollars or in Crypto.
+- Set up access control on Files.
+- Sybil protection using Polygon ID
+
+## Roadmap
+- Easy API to add files from anywhere to the user's account
+- In built chat system using XMTP + Lens Protocol to enable File sharing
+- On platform Video support using Live Peer
+- Storing and managing passwords and crucial information using Lit Protocol
+
+## Tech Stack
+- Ceramic to store the CIDs
+- Web3.storage for storing Files
+- SurfDB (WAGMI + RainbowKit + Ceramic) for authentication, database & storage
+- Smart Contracts on Multiple Chains
+- Chainlink to fetch live prices in Smart Contracts
+- Nextjs, Reactjs, TailwindCSS, styled-components for the frontend
+
+##
