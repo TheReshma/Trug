@@ -12,10 +12,12 @@
     "@rainbow-me/rainbowkit": "0.8.0",
     "@surfdb/client-sdk": "0.2.0",
     "@types/styled-components": "^5.1.26",
+    "antd": "^5.0.0",
     "ethers": "5.7.2",
     "next": "13.0.4",
     "react": "^18",
     "react-dom": "^18",
+    "react-icons": "^4.6.0",
     "siwe": "1.1.6",
     "wagmi": "0.8.5"
   },

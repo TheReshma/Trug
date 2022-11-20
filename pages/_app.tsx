@@ -14,6 +14,7 @@ import { publicProvider } from "wagmi/providers/public";
 import { useEffect, useState } from "react";
 import { SiweMessage } from "siwe";
 import GlobalContextProvider, { useGlobal } from "@/app/context/GlobalContext";
+import { ConfigProvider } from "antd";
 
 const { chains, provider, webSocketProvider } = configureChains(
   [
@@ -49,8 +50,7 @@ function MyApp({ Component, pageProps }: AppProps) {
   const [authenticationStatus, setAuthenticationStatus] = useState<
     "loading" | "authenticated" | "unauthenticated"
   >("loading");
-
-  const [user, setUser] = useState(null);
+  const { connectUser } = useGlobal();
 
   const authenticationAdapter = createAuthenticationAdapter({
     getNonce: async () => {
@@ -89,6 +89,7 @@ function MyApp({ Component, pageProps }: AppProps) {
       setAuthenticationStatus(
         verifyRes.ok ? "authenticated" : "unauthenticated"
       );
+      window.location.reload();
       return Boolean(verifyRes.ok);
     },
     signOut: async () => {
@@ -107,7 +108,8 @@ function MyApp({ Component, pageProps }: AppProps) {
       setAuthenticationStatus(
         user.address ? "authenticated" : "unauthenticated"
       );
-      setUser(user.address);
+      console.log({ user });
+      connectUser && connectUser(user._id);
     })();
   }, []);
 
@@ -123,7 +125,15 @@ function MyApp({ Component, pageProps }: AppProps) {
           modalSize="compact"
         >
           <GlobalContextProvider>
-            <Component {...pageProps} />
+            <ConfigProvider
+              theme={{
+                token: {
+                  colorPrimary: "#00b96b",
+                },
+              }}
+            >
+              <Component {...pageProps} />
+            </ConfigProvider>
           </GlobalContextProvider>
         </RainbowKitProvider>
       </RainbowKitAuthenticationProvider>
