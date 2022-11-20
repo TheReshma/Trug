@@ -1,7 +1,18 @@
 export type UserType = {
   ethAddress: string;
   username: string;
-  about: string;
+  message: string;
+  signature: string;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type FileType = {
+  filename: string;
+  filetype: string;
+  cId: string;
   id: string;
-  trugId: string;
-}
+  streamId: string;
+  createdAt: string;
+  updatedAt: string;
+};

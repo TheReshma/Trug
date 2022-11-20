@@ -11,8 +11,8 @@ import { UserType } from "@/app/types/types";
 interface GlobalContextType {
   connectedUser: string;
   connectUser: (userId: string) => void;
-  trugId: string;
-  setTrugId: (trugId: string) => void;
+  ethAddress: string;
+  setEthAddress: (trugId: string) => void;
   disconnectUser: () => void;
   userData: UserType;
   setUserData: React.Dispatch<React.SetStateAction<UserType>>;
@@ -22,7 +22,7 @@ const useProviderGlobalContext = () => {
   const router = useRouter();
   const [connectedUser, setConnectedUser] = useState("");
   const [userData, setUserData] = useState({} as UserType);
-  const [trugId, setTrugId] = useState("");
+  const [ethAddress, setEthAddress] = useState("");
 
   function connectUser(userId: string) {
     setConnectedUser(userId);
@@ -34,9 +34,11 @@ const useProviderGlobalContext = () => {
   useEffect(() => {
     void (async () => {
       const res = await fetch("/api/auth/me");
-      const user = await res.json();
+      const user = await res.json(); 
+      console.log({user})
       connectUser(user._id);
-      console.log({ connectedUser });
+      setUserData(user);
+      setEthAddress(user.address);
     })();
   }, []);
 
@@ -46,8 +48,8 @@ const useProviderGlobalContext = () => {
     disconnectUser,
     userData,
     setUserData,
-    trugId,
-    setTrugId
+    ethAddress,
+    setEthAddress
   };
 }
 

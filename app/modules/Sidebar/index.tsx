@@ -1,22 +1,19 @@
-import Container from "@/app/components/Container";
-import { MdUploadFile } from "react-icons/md";
 import type { UploadProps } from "antd";
 import { Button, message, Upload } from "antd";
-import { surfClient } from "@/lib/surfClient";
+import { UploadOutlined } from "@ant-design/icons";
+import { uploadFile } from "@/app/services/File";
 
 const props: UploadProps = {
-  name: 'file',
-  action: 'https://www.mocky.io/v2/5cc8019d300000980a055e76',
-  headers: {
-    authorization: 'authorization-text',
+  customRequest: (info) => {
+    void uploadFile({ info });
   },
   onChange(info) {
-    if (info.file.status !== 'uploading') {
+    if (info.file.status !== "uploading") {
       console.log(info.file, info.fileList);
     }
-    if (info.file.status === 'done') {
+    if (info.file.status === "uploading") {
       void message.success(`${info.file.name} file uploaded successfully`);
-    } else if (info.file.status === 'error') {
+    } else if (info.file.status === "error") {
       void message.error(`${info.file.name} file upload failed.`);
     }
   },
@@ -25,23 +22,14 @@ const props: UploadProps = {
 export default function Sidebar() {
   return (
     <div className="w-[20rem]">
-      <Container>
-        <div className="flex flex-col gap-1">
-          <button className="p-2 px-3 bg-white bg-opacity-0 rounded-xl hover:bg-opacity-20 duration-700 items-center">
-            <MdUploadFile />
-            Upload File
+      <div className="flex flex-col gap-1">
+        <Upload {...props}>
+          <button className="flex flex-row justify between p-3 bg-white bg-opacity-10 font-bold hover:bg-opacity-20 rounded-2xl duration-700 text-white items-center px-16 gap-3">
+            <UploadOutlined />
+            Click to Upload
           </button>
-          <button className="p-2 px-3 bg-white bg-opacity-0 rounded-xl hover:bg-opacity-20 duration-700">
-            Upload Folder
-          </button>
-          <button className="p-2 px-3 bg-white bg-opacity-0 rounded-xl hover:bg-opacity-20 duration-700">
-            New Folder
-          </button>
-          <Upload {...props}>
-            <Button icon={<MdUploadFile />} >Click to Upload</Button>
-          </Upload>
-        </div>
-      </Container>
+        </Upload>
+      </div>
     </div>
   );
 }

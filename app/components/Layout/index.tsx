@@ -81,6 +81,7 @@ const Container = styled.div`
 
 export default function Layout({ children }: { children: ReactNode }) {
   const { connectedUser } = useGlobal();
+  console.log(connectedUser);
   return (
     <div className="flex flex-col bg-[#0f0025ff] text-white w-full font-default h-screen">
       {connectedUser ? (

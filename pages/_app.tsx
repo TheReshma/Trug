@@ -94,6 +94,7 @@ function MyApp({ Component, pageProps }: AppProps) {
     },
     signOut: async () => {
       await fetch("/api/auth/logout", {
+        headers: { "Content-Type": "application/json" },
         method: "POST",
       });
       setAuthenticationStatus("unauthenticated");
@@ -104,11 +105,9 @@ function MyApp({ Component, pageProps }: AppProps) {
     void (async () => {
       const res = await fetch("/api/auth/me");
       const user = await res.json();
-      console.log({ user });
       setAuthenticationStatus(
         user.address ? "authenticated" : "unauthenticated"
       );
-      console.log({ user });
       connectUser && connectUser(user._id);
     })();
   }, []);
@@ -128,7 +127,7 @@ function MyApp({ Component, pageProps }: AppProps) {
             <ConfigProvider
               theme={{
                 token: {
-                  colorPrimary: "#00b96b",
+                  colorPrimary: "#6600fff",
                 },
               }}
             >

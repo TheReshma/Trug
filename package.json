@@ -19,7 +19,8 @@
     "react-dom": "^18",
     "react-icons": "^4.6.0",
     "siwe": "1.1.6",
-    "wagmi": "0.8.5"
+    "wagmi": "0.8.5",
+    "web3.storage": "^4.4.0"
   },
   "devDependencies": {
     "@next/eslint-plugin-next": "^13.0.4",
